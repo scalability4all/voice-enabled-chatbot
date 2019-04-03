@@ -1,0 +1,6 @@
+pyttsx3
+wikipedia
+SpeechRecognition
+pygame
+weather-api
+pyowm
