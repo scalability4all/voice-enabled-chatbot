@@ -82,7 +82,7 @@ You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>
 ## Example
 
 <p align="center">
-  <img src="" alt="Chat-Sample">
+  <img src="https://i.imgur.com/SPCAW5q.gif" alt="Chat-Sample">
 </p>
 
 ## References
