@@ -1,5 +1,7 @@
 # voice-enabled-chatbot
 
+Implementing a voice enabled chatbot which converses with a user via their voice in natural language. The user should be able to interact with the application like a voice assistant and appropriate responses should be returned by the application (also through voice). The number of topics to converse upon will be fixed however the user should be able to converse through natural language.
+
 If we have topics like the weather, location information, inventory information etc the
 application should be able to converse in that particular topic. Like, if we have questions
 such as:-
@@ -81,6 +83,7 @@ You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>
 4. Use cache mechanism to give result about recently used query.
 5. At the end, the deliverable will be to implement user interface for a sample chatbot implemented.
 6. We will also extend it to create plugin for companies requiring chatbot. They can put their domain in config file and data separately to give personalized result.
+7. Multi Language Support
 
 ## Example
 
