@@ -5,8 +5,11 @@ application should be able to converse in that particular topic. Like, if we hav
 such as:-
 
 Hey, what is the weather today? - **Weather Information**
+
 I want to know if there are any shopping stores near me. - **Location Information**
+
 Will it rain today? - **Weather Information**
+
 Can you tell me availability of item in Store X? - **Inventory Information**
 
 Initially the application should be able to identify each particular topic and then return the
@@ -84,6 +87,8 @@ You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>
 
 ## References
 
-References Using: 
+References Using:
+
          a) https://medium.com/@rahulvaish/speech-to-text-python-77b510f06de
+         
          b) https://link.springer.com/content/pdf/10.1007%2F978-3-642-36973-5_88.pdf
