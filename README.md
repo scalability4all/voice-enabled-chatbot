@@ -67,11 +67,11 @@ Arguments:
 ```
 You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>
 
-## Compiling SwagLyrics for Development or Installation
+## Compiling Project for Development or Installation
 
 - Clone the repo by `git clone https://github.com/satyammittal/voice-enabled-chatbot.git` or use ssh.
 - `cd` into the cloned repo.
-- `bash ` the -e flag installs it locally in editable mode.
+- `sudo apt-get install portaudio19-dev` and `pip install -r requirements.txt` 
 
 ## Improvements Planned
 
