@@ -17,8 +17,11 @@ appropriate response. After that, the chatbot should carry on the conversation r
 particular topic. For ex:
 
 **User** - I want to know if there are any shopping stores near me.
+
 **Chatbot** - These are the nearest stores:- A, B, C. Where do you wanna go?
+
 **User** - I want to go to the most popular one among them
+
 **Chatbot**- All right, showing you directions to C.
 
 So, mainly the chatbot should formulate appropriate responses to incoming questions and
