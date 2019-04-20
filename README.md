@@ -1,6 +1,6 @@
-# voice-enabled-chatbot
+# Voice Enabled Chatbot
 
-Implementing a voice enabled chatbot which converses with a user via their voice in natural language. The user should be able to interact with the application like a voice assistant and appropriate responses should be returned by the application (also through voice). The number of topics to converse upon will be fixed however the user should be able to converse through natural language.
+Implementing a voice enabled chatbot which converses with a user via their voice in natural language. The user should be able to interact with the application like a voice assistant and appropriate response will be returned by the application (also through voice). The number of topics to converse upon will be fixed however the user should be able to converse through natural language.
 
 If we have topics like the weather, location information, inventory information etc the
 application should be able to converse in that particular topic. Like, if we have questions
@@ -69,13 +69,20 @@ Arguments:
 ```
 You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>
 
-## Compiling Project for Development or Installation
+## Build the application locally
+* Clone the repo
+    - Clone the ```voice-enabled-chatbot``` repo locally. In the terminal, run : <br>
+    ```git clone https://github.com/satyammittal/voice-enabled-chatbot.git```
+* Install the dependencies
+    - We need PyAudio, a cross-platform audio I/O library.For this run : <br>
+    ```sudo apt-get install portaudio19-dev```
+    - Further, install other requirements using : <br>
+    ```pip install -r requirements.txt```
+## Run the application 
+Run the application using command : <br>
+```python chatbot.py```
 
-- Clone the repo by `git clone https://github.com/satyammittal/voice-enabled-chatbot.git` or use ssh.
-- `cd` into the cloned repo.
-- `sudo apt-get install portaudio19-dev` and `pip install -r requirements.txt` 
-
-## Improvements Planned
+## Milestones
 
 1. Completing chat bot so that it works on multiple domain specified through config.
 2. Adding classification techniques for intent seperation.
@@ -85,16 +92,12 @@ You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>
 6. We will also extend it to create plugin for companies requiring chatbot. They can put their domain in config file and data separately to give personalized result.
 7. Multi Language Support
 
-## Example
+## Sample output
 
 <p align="center">
   <img src="https://i.imgur.com/SPCAW5q.gif" alt="Chat-Sample">
 </p>
 
 ## References
-
-References Using:
-
-         a) https://medium.com/@rahulvaish/speech-to-text-python-77b510f06de
-         
-         b) https://link.springer.com/content/pdf/10.1007%2F978-3-642-36973-5_88.pdf
+* [Speech To Text - Python](https://medium.com/@rahulvaish/speech-to-text-python-77b510f06de)
+* [Topic-Focused Summarization of Chat Conversations](https://link.springer.com/content/pdf/10.1007%2F978-3-642-36973-5_88.pdf)
