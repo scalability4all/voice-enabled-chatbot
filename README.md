@@ -79,8 +79,7 @@ You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>
     - Further, install other requirements using : <br>
     ```pip install -r requirements.txt```
 ## Run the application 
-Run the application using command : <br>
-```python chatbot.py```
+Run the application using command - ```python chatbot.py```
 
 ## Milestones
 
