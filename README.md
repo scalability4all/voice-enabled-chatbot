@@ -1,5 +1,8 @@
 # Voice Enabled Chatbot
 
+
+[![Build Status](https://travis-ci.org/scalability4all/voice-enabled-chatbot.svg?branch=master)](https://travis-ci.org/scalability4all/voice-enabled-chatbot) [![codecov](https://codecov.io/gh/scalability4all/voice-enabled-chatbot/branch/master/graph/badge.svg)](https://codecov.io/gh/scalability4all/voice-enabled-chatbot)
+
 Implementing a voice enabled chatbot which converses with a user via their voice in natural language. The user should be able to interact with the application like a voice assistant and appropriate response will be returned by the application (also through voice). The number of topics to converse upon will be fixed however the user should be able to converse through natural language.
 
 If we have topics like the weather, location information, inventory information etc the
