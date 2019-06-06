@@ -5,6 +5,12 @@ python:
   - "3.4"
 cache: pip
 install:
+  - sudo apt-get install portaudio19-dev
   - pip install -r requirements.txt
+  - pip install codecov
+  - pip install nose-cov
+  - python -c "import nltk; nltk.download('stopwords')"
 script:
-  - py.test --cov-report term-missing --cov app -v
+  - nosetests --nocapture --with-cov --cov-config .coveragerc
+after_success:
+  - codecov
