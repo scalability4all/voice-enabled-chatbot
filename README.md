@@ -75,9 +75,13 @@ You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>
     ```git clone https://github.com/satyammittal/voice-enabled-chatbot.git```
 * Install the dependencies
     - We need PyAudio, a cross-platform audio I/O library.For this run : <br>
-    ```sudo apt-get install portaudio19-dev```
+    ```sudo apt-get install portaudio19-dev``` (linux) <br>
+    ```brew install portaudio``` (mac) <br>
     - Further, install other requirements using : <br>
     ```pip install -r requirements.txt```
+    - Install english stopwords using : <br>
+    ```python -c "import nltk; nltk.download('stopwords')"```
+
 ## Run the application 
 Run the application using command - ```python chatbot.py```
 
