@@ -8,7 +8,7 @@ import pyowm
 import config
 import speech_recognition as sr
 from google_places import *
-#from speech_recognition.__main__ import r, audio
+# from speech_recognition.__main__ import r, audio
 
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
@@ -188,7 +188,8 @@ while True:
         stores_data = {}
         query = filter_sentence(translate)
         stores, stores_data = nearby_places(
-            config.google_api_key, personalized.city, query, personalized.latitude, personalized.longitude)
+            config.google_api_key, personalized.city, query,
+            personalized.latitude, personalized.longitude)
         print("These are the stores: ")
         for store in stores:
             print(store)
