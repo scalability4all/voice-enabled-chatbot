@@ -7,3 +7,4 @@ pyaudio
 pyttsx3
 pyttsx
 nltk
+numpy
