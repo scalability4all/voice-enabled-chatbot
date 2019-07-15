@@ -28,7 +28,7 @@ def authorize():
     if 'secret' not in session:
         return redirect(url_for("home"))
 
-    oauth_token    = request.args.get('oauth_token')
+    oauth_token = request.args.get('oauth_token')
     oauth_verifier = request.args.get('oauth_verifier')
 
     sObj = Splitwise(Config.consumer_key, Config.consumer_secret)
