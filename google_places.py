@@ -40,7 +40,7 @@ def get_location():
     # {u'city': u'Hyderabad', u'longitude': 78.4744,
     # u'latitude': 17.3753, u'state': u'Telangana', u'IPv4': u'157.48.48.45',
     #  u'country_code': u'IN', u'country_name': u'India', u'postal': u'500025'}
-    url = "https://geoip-db.com/json"
+    url = "https://geolocation-db.com/json"
     response = urllib.urlopen(url)
     data = json.loads(response.read())
     data_named = namedtuple("User", data.keys())(*data.values())
