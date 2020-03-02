@@ -1,7 +1,7 @@
 wikipedia
 SpeechRecognition
 pygame
-weather-api
+python3-weather-api
 pyowm
 pyaudio
 pyttsx3
