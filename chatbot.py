@@ -73,9 +73,9 @@ stores_data = {}
 print("hi ", "Setting location through ip bias, Change location?")
 change_location = False
 while True:
-    speech_type = raw_input('Speech/Text: ')
+    speech_type = input('Speech/Text: ')
     if speech_type.lower() != "speech":
-        translate = raw_input("Type: ")
+        translate = input("Type: ")
     else:
         now = datetime.datetime.now()
         r = sr.Recognizer()
