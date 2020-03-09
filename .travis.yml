@@ -7,8 +7,7 @@ cache: pip
 install:
   - sudo apt-get install portaudio19-dev
   - pip install -r requirements.txt
-  - pip install codecov
-  - pip install nose-cov
+  - pip install -r test-requirements.txt
   - python -c "import nltk; nltk.download('stopwords')"
 script:
   - nosetests --nocapture --with-cov --cov-config .coveragerc
