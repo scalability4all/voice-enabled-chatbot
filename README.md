@@ -81,11 +81,14 @@ You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>
     ```sudo apt-get install portaudio19-dev``` (linux) <br>
     ```brew install portaudio``` (mac) <br>
     - Further, install other requirements using : <br>
-    ```pip install -r requirements.txt```
+    ```pip install -r requirements.txt``` <br>
     - Install english stopwords using : <br>
-    ```python -c "import nltk; nltk.download('stopwords')"```
-
-## Run the application 
+    ```python -c "import nltk; nltk.download('stopwords')"``` <br>
+    - Install also *pywin32* (windows) <br>
+    ```pip install pywin32``` <br>
+    - The *pyowm* is supposed to be instable in windows. <br>
+    
+    ## Run the application 
 Run the application using command - ```python chatbot.py```
 
 ## Milestones
