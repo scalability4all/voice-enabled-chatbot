@@ -83,11 +83,7 @@ You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>
     - Further, install other requirements using : <br>
     ```pip install -r requirements.txt```
     - Install english stopwords using : <br>
-    ```python -c "import nltk; nltk.download('stopwords')"``` <br>
-    For windows, install also *pywin32*, and the *pyowm* is supposed to be instable : <br>
-    ```pip install pywin32``` <br>
-    or <br>
-    ```pip install -r requirements.txt```<br>
+    ```python -c "import nltk; nltk.download('stopwords')"```
 
 ## Run the application 
 Run the application using command - ```python chatbot.py```
