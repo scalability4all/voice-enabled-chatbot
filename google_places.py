@@ -2,7 +2,6 @@ import requests
 import json
 import config
 from collections import namedtuple
-import urllib
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 stop_words = set(stopwords.words('english'))
@@ -42,8 +41,8 @@ def get_location():
     # u'latitude': 17.3753, u'state': u'Telangana', u'IPv4': u'157.48.48.45',
     #  u'country_code': u'IN', u'country_name': u'India', u'postal': u'500025'}
     url = config.geolocation_api
-    response = urllib.urlopen(url)
-    data = json.loads(response.read())
+    response = requests.get(url)
+    data = response.json()
     data_named = namedtuple("User", data.keys())(*data.values())
     return data_named
 
