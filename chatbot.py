@@ -8,6 +8,7 @@ import pyowm
 import config
 import speech_recognition as sr
 from google_places import *
+import pyjokes
 # from speech_recognition.__main__ import r, audio
 
 engine = pyttsx3.init()
@@ -122,7 +123,7 @@ while True:
         engine.say('I am a bot, silly')
         engine.runAndWait()
     elif translate in cmd4:
-        webbrowser.open('www.youtube.com')
+        webbrowser.open('http://www.youtube.com')
     elif translate in cmd6:
         print('see you later')
         exit()
@@ -155,9 +156,10 @@ while True:
         engine.say(now.strftime("The time is %H:%M"))
         engine.runAndWait()
     elif translate in cmd1:
-        webbrowser.open('www.google.com')
+        webbrowser.open('http://www.google.com')
     elif translate in cmd3:
-        jokrep = random.choice(jokes)
+        jokrep = pyjokes.get_joke()
+        print(jokrep)
         engine.say(jokrep)
         engine.runAndWait()
     elif ("them" in translate.split(" ") or "popular" in translate.split(" ")) and stores:
@@ -205,4 +207,4 @@ while True:
         engine.say(wikipedia.summary(translate))
         engine.runAndWait()
         userInput3 = input("or else search in google")
-        webbrowser.open_new('www.google.com/search?q=' + userInput3)
+        webbrowser.open_new('http://www.google.com/search?q=' + userInput3)
