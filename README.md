@@ -82,10 +82,10 @@ You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>
     ```brew install portaudio``` (mac) <br>
     - Further, install other requirements using : <br>
     ```pip install -r requirements.txt``` <br>
+    - Using windows, install other requirements using: <br>
+    ```pip install -r requirements_windows.txt```<br>
     - Install english stopwords using : <br>
     ```python -c "import nltk; nltk.download('stopwords')"``` <br>
-    - Install also *pywin32* (windows) <br>
-    ```pip install pywin32``` <br>
     - The *pyowm* is supposed to be instable in windows. <br>
     
     ## Run the application 
