@@ -139,11 +139,12 @@ while True:
         temp = x['main']['temp']
         humidity = x['main']['humidity']
         pressure = x['main']['pressure']
+        tempCel = round(temp-273.15,2)
         #use the above variables based on user needs
         print("Weather in {} is {} with temperature {} celsius, humidity in the air is {} and wind blowing at a speed of {}".
-              format(city, skyDescription, temp, humidity, windSpeed))
+              format(city, skyDescription, tempCel, humidity, windSpeed))
         engine.say("Weather in {} is {} with temperature {} celsius, humidity in the air is {} and wind blowing at a speed of {}".
-              format(city, skyDescription, temp, humidity, windSpeed))                                                                                                                                                                   
+              format(city, skyDescription, tempCel, humidity, windSpeed))                                                                                                                                                                   
         engine.runAndWait()
                 
     elif translate in var3:
