@@ -8,3 +8,4 @@ pyttsx3
 pyttsx
 nltk
 numpy
+pyjokes
