@@ -2,7 +2,7 @@ import requests
 import json
 import config
 from collections import namedtuple
-import urllib
+import urllib.request
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 stop_words = set(stopwords.words('english'))
@@ -42,10 +42,10 @@ def get_location():
     # u'latitude': 17.3753, u'state': u'Telangana', u'IPv4': u'157.48.48.45',
     #  u'country_code': u'IN', u'country_name': u'India', u'postal': u'500025'}
     url = config.geolocation_api
-    response = urllib.urlopen(url)
-    data = json.loads(response.read())
+    response = urllib.request.urlopen(url)
+    data = json.loads(response.read().decode('utf-8'))
     data_named = namedtuple("User", data.keys())(*data.values())
-    return data_named
+    return data_named, data['longitude'], data['latitude']
 
 
 def filter_sentence(text):
