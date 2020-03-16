@@ -59,7 +59,6 @@ Inventory Details about Store
     - Added voice support to chat
 
 ## Usage
-`python main.py`
 
 Arguments:
 ```
@@ -87,8 +86,14 @@ You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>
     - Install english stopwords using : <br>
     ```python -c "import nltk; nltk.download('stopwords')"``` <br>
     - The *pyowm* is supposed to be instable in windows. <br>
+* Configure Google API Key
+    - Go to the [Google Cloud Platform Console](https://cloud.google.com/console/google/maps-apis/overview).
+    - Select or create the project for which you want to add an API key.
+    - Click the menu button and select __APIs & Services > Credentials__.
+    - On the __Credentials__ page, click __Create credentials > API key__.
+    - Copy and paste the API key in [`config.py`](/config.py) file.
     
-    ## Run the application 
+## Run the application 
 Run the application using command - ```python chatbot.py```
 
 ## Milestones
