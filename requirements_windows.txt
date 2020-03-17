@@ -75,4 +75,5 @@ win-inet-pton==1.1.0
 wincertstore==0.2
 xmltodict==0.12.0
 zipp==3.1.0
+pyjokes==0.6.0
 (base)
