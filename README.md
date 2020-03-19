@@ -1,5 +1,8 @@
 # Voice Enabled Chatbot
 
+
+[![Build Status](https://travis-ci.org/scalability4all/voice-enabled-chatbot.svg?branch=master)](https://travis-ci.org/scalability4all/voice-enabled-chatbot) [![codecov](https://codecov.io/gh/scalability4all/voice-enabled-chatbot/branch/master/graph/badge.svg)](https://codecov.io/gh/scalability4all/voice-enabled-chatbot)
+
 Implementing a voice enabled chatbot which converses with a user via their voice in natural language. The user should be able to interact with the application like a voice assistant and appropriate response will be returned by the application (also through voice). The number of topics to converse upon will be fixed however the user should be able to converse through natural language.
 
 If we have topics like the weather, location information, inventory information etc the
@@ -56,7 +59,6 @@ Inventory Details about Store
     - Added voice support to chat
 
 ## Usage
-`python main.py`
 
 Arguments:
 ```
@@ -75,9 +77,22 @@ You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>
     ```git clone https://github.com/satyammittal/voice-enabled-chatbot.git```
 * Install the dependencies
     - We need PyAudio, a cross-platform audio I/O library.For this run : <br>
-    ```sudo apt-get install portaudio19-dev```
+    ```sudo apt-get install portaudio19-dev``` (linux) <br>
+    ```brew install portaudio``` (mac) <br>
     - Further, install other requirements using : <br>
-    ```pip install -r requirements.txt```
+    ```pip install -r requirements.txt``` <br>
+    - Using windows, install other requirements using: <br>
+    ```pip install -r requirements_windows.txt```<br>
+    - Install english stopwords using : <br>
+    ```python -c "import nltk; nltk.download('stopwords')"``` <br>
+    - The *pyowm* is supposed to be instable in windows. <br>
+* Configure Google API Key
+    - Go to the [Google Cloud Platform Console](https://cloud.google.com/console/google/maps-apis/overview).
+    - Select or create the project for which you want to add an API key.
+    - Click the menu button and select __APIs & Services > Credentials__.
+    - On the __Credentials__ page, click __Create credentials > API key__.
+    - Copy and paste the API key in [`config.py`](/config.py) file.
+    
 ## Run the application 
 Run the application using command - ```python chatbot.py```
 
