@@ -128,7 +128,9 @@ while True:
         exit()
     elif translate in cmd5:
         print("here")
-        url="http://api.openweathermap.org/data/2.5/weather?lat={}&lon={}&appid={}&units={}".format(latitude,longitude,config.weather_api_key, config.weather_temperature_format)        
+        url = "http://api.openweathermap.org/data/2.5/weather?lat={}&lon={}&appid={}&units={}".\
+            format(latitude, longitude, config.weather_api_key,
+                   config.weather_temperature_format)
         r = requests.get(url)
         x = r.json()
         city = x['name']
@@ -139,13 +141,18 @@ while True:
         temp = x['main']['temp']
         humidity = x['main']['humidity']
         pressure = x['main']['pressure']
-        #use the above variables based on user needs
-        print("Weather in {} is {} with temperature {} celsius, humidity in the air is {} and wind blowing at a speed of {}".
+        # use the above variables based on user needs
+        print("Weather in {} is {} "
+              "with temperature {} celsius"
+              ", humidity in the air is {} "
+              "and wind blowing at a speed of {}".
               format(city, skyDescription, temp, humidity, windSpeed))
-        engine.say("Weather in {} is {} with temperature {} celsius, humidity in the air is {} and wind blowing at a speed of {}".
-              format(city, skyDescription, temp, humidity, windSpeed))                                                                                                                                                                   
+        engine.say("Weather in {} is {} "
+                   "with temperature {} celsius"
+                   ", humidity in the air is {} "
+                   "and wind blowing at a speed of {}".
+                   format(city, skyDescription, temp, humidity, windSpeed))
         engine.runAndWait()
-                
     elif translate in var3:
         print("Current date and time : ")
         print(now.strftime("The time is %H:%M"))
@@ -180,7 +187,9 @@ while True:
                 "Showing you directions to the store {}".format(
                     sorted_stores[0]))
             engine.runAndWait()
-    elif "stores" in translate.split(" ") or "food" in translate.split(" ") or "restaurant" in translate:
+    elif "stores" in translate.split(" ") or\
+         "food" in translate.split(" ") or\
+         "restaurant" in translate:
         stores = []
         stores_data = {}
         query = filter_sentence(translate)
