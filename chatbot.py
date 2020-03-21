@@ -20,8 +20,8 @@ rate = engine.getProperty('rate')
 
 engine.setProperty('rate', rate - 25)
 
-greetings = ['hey there', 'hello', 'hi', 'Hai', 'hey!', 'hey']
-question = ['How are you?', 'How are you doing?']
+greetings = ['hey there', 'hello', 'hi', 'Hai', 'hey!', 'hey','hi there!']
+question = ['How are you?', 'How are you doing?','What\'s up?']
 responses = ['Okay', "I'm fine"]
 var1 = ['who made you', 'who created you']
 var2 = ['I_was_created_by_Edward_right_in_his_computer.',
@@ -36,8 +36,8 @@ cmd3 = [
     'say something funny',
     'tell something funny']
 cmd4 = ['open youtube', 'i want to watch a video']
-cmd5 = ['tell me the weather', 'weather', 'what about the weather']
-cmd6 = ['exit', 'close', 'goodbye', 'nothing']
+cmd5 = ['tell me the weather', 'weather', 'what about the weather', 'what\'s the weather']
+cmd6 = ['exit', 'close', 'goodbye', 'nothing','catch you later','bye']
 cmd7 = [
     'what is your color',
     'what is your colour',
@@ -56,21 +56,6 @@ personalized = get_location()
 stores = []
 stores_data = {}
 
-
-"""with sr.Microphone() as source:
-    r.adjust_for_ambient_noise(source)
-    print "Say Something"
-    #listens for the user's input
-    audio = r.listen(source)
-
-    try:
-        text = r.recognize_google(audio)
-        print "you said: " + text
-
-    #error occurs when google could not understand what was said
-
-    except sr.UnknownValueError:
-        print("Google Speech Recognition could not understand audio") """
 print("hi ", "Setting location through ip bias, Change location?")
 change_location = False
 while True:
