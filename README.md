@@ -11,15 +11,15 @@ such as:-
 
 Hey, what is the weather today? - **Weather Information**
 
-I want to know if there are any shopping stores near me. - **Location Information**
+I want to know if there are any shopping stores near me? - **Location Information**
 
 Will it rain today? - **Weather Information**
 
-Can you tell me availability of item in Store X? - **Inventory Information**
+Can you tell me availability of item in store X? - **Inventory Information**
 
 Initially the application should be able to identify each particular topic and then return the
 appropriate response. After that, the chatbot should carry on the conversation regarding that
-particular topic. For ex:
+particular topic. For eg:
 
 **User** - I want to know if there are any shopping stores near me.
 
@@ -30,21 +30,21 @@ particular topic. For ex:
 **Chatbot**- All right, showing you directions to C.
 
 So, mainly the chatbot should formulate appropriate responses to incoming questions and
-carry on the conversation. Keeping in mind, the conversation would be in natural language
-and the user is returned sufficient information.
+carry on the conversation. Keep in mind, the conversation would be in natural language
+and the user has returned sufficient information.
 
 
 ## Concept
 
-Before starting Conversation, bot will fetch the location of the user and other details to give personalized results.
+Before starting conversation, bot will fetch the location of the user and other details to give personalized results.
 
-**Step 1: Speech-2-Text:**  Given a speech through Microphone, Store it and Convert it using SpeechRecognition and PyAudio.
+**Step 1: Speech-2-Text:**  Given a speech through Microphone, store it and convert it using SpeechRecognition and PyAudio libraries.
 
-**Step 2: Topic Modelling:** Get Entity and Intent of chat using model with a corpora. To get the trained model, we will use the classifier to categorize it to weather, location and inventory. After that using RASA-NLU with Spacy library, we will get the entities.
+**Step 2: Topic Modelling:** Get Entity and Intent of chat using model with a corpora. To get the trained model, we will use the classifier to categorize it into weather, location and inventory. After that using RASA-NLU with Spacy library, we will extract the entities.
 
-**Step 3:**  After Finding Intent and Entity, we will set model in following method:
-Intent  = Weather: Based on entity specified, We will use weather API to get data about location.
-Intent = Location: Following Conversation flow:
+**Step 3:**  After Finding Intent and Entity, we will set the model using the following method:
+Intent  = Weather: Based on entity specified, We will use weather API to fetch data of location.
+Intent = Location: Following conversation flow:
 Get Stores located or Any Nearby Stores
 Choose Store
 Inventory Details about Store
