@@ -20,8 +20,8 @@ rate = engine.getProperty('rate')
 
 engine.setProperty('rate', rate - 25)
 
-greetings = ['hey there', 'hello', 'hi', 'Hai', 'hey!', 'hey','hi there!']
-question = ['How are you?', 'How are you doing?','What\'s up?']
+greetings = ['hey there', 'hello', 'hi', 'Hai', 'hey!', 'hey', 'hi there!']
+question = ['How are you?', 'How are you doing?', 'What\'s up?']
 responses = ['Okay', "I'm fine"]
 var1 = ['who made you', 'who created you']
 var2 = ['I_was_created_by_Edward_right_in_his_computer.',
@@ -37,7 +37,7 @@ cmd3 = [
     'tell something funny']
 cmd4 = ['open youtube', 'i want to watch a video']
 cmd5 = ['tell me the weather', 'weather', 'what about the weather', 'what\'s the weather']
-cmd6 = ['exit', 'close', 'goodbye', 'nothing','catch you later','bye']
+cmd6 = ['exit', 'close', 'goodbye', 'nothing', 'catch you later', 'bye']
 cmd7 = [
     'what is your color',
     'what is your colour',
