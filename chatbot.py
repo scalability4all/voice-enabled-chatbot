@@ -9,6 +9,8 @@ import config
 import speech_recognition as sr
 from google_places import *
 import pyjokes
+import requests
+import json
 # from speech_recognition.__main__ import r, audio
 
 engine = pyttsx3.init()
@@ -128,27 +130,87 @@ while True:
         print('see you later')
         exit()
     elif translate in cmd5:
-        print("here")
-        owm = pyowm.OWM(config.weather_api_key)
-        observation = owm.weather_at_place('Bangalore, IN')
-        observation_list = owm.weather_around_coords(12.972442, 77.580643)
-        w = observation.get_weather()
-        w.get_wind()
-        w.get_humidity()
-        w.get_temperature('celsius')
-        print(w)
-        print(w.get_wind())
-        print(w.get_humidity())
-        print(w.get_temperature('celsius'))
-        engine.say(w.get_wind())
+        import requests, json 
+
+# Enter your API key here 
+        api_key = config.weather_api_key
+
+# base_url variable to store url 
+        base_url = "http://api.openweathermap.org/data/2.5/weather?"
+
+# Give city name 
+        city_name = get_location()
+        print("current city is:",
+            city_name)
+
+# complete_url variable to store 
+# complete url address 
+        complete_url = base_url + "appid=" + api_key +"&q=" + city_name
+# get method of requests module 
+# return response object 
+        response = requests.get(complete_url) 
+
+# json method of response object 
+# convert json format data into 
+# python format data 
+        x = response.json() 
+
+# Now x contains list of nested dictionaries 
+# Check the value of "cod" key is equal to 
+# "404", means city is found otherwise, 
+# city is not found 
+        if x["cod"] != "404":
+            
+        
+
+    # store the value of "main" 
+    # key in variable y 
+            y = x["main"] 
+
+    # store the value corresponding 
+    # to the "temp" key of y 
+            current_temperature = y["temp"]  
+
+    # store the value corresponding 
+    # to the "pressure" key of y 
+            current_pressure = y["pressure"] 
+
+    # store the value corresponding 
+    # to the "humidity" key of y 
+            current_humidiy = y["humidity"] 
+
+    # store the value of "weather" 
+    # key in variable z 
+            z = x["weather"] 
+
+    # store the value corresponding 
+    # to the "description" key at 
+    # the 0th index of z 
+            weather_description = z[0]["description"] 
+
+    # print following values
+             
+            print(" Temperature (in kelvin unit) = " +
+                    str(current_temperature) +
+                    "\n atmospheric pressure (in hPa unit) = " +
+                    str(current_pressure) +
+                    "\n humidity (in percentage) = " +
+                    str(current_humidiy) +
+                    "\n description = " +
+                    str(weather_description)) 
+
+        else: 
+            print(" City Not Found ") 
+
+        engine.say(y["pressure"])
         engine.runAndWait()
         engine.say('humidity')
         engine.runAndWait()
-        engine.say(w.get_humidity())
+        engine.say(current_humidiy)
         engine.runAndWait()
         engine.say('temperature')
         engine.runAndWait()
-        engine.say(w.get_temperature('celsius'))
+        engine.say(current_temperature)
         engine.runAndWait()
     elif translate in var3:
         print("Current date and time : ")
@@ -165,7 +227,88 @@ while True:
     elif ("them" in translate.split(" ") or "popular" in translate.split(" ")) and stores:
         sorted_stores_data = sorted(
             stores_data,
-            key=lambda x: x['rating'],
+            key=lambda x: import requests, json 
+
+# Enter your API key here 
+        api_key = config.weather_api_key
+
+# base_url variable to store url 
+        base_url = "http://api.openweathermap.org/data/2.5/weather?"
+
+# Give city name 
+        city_name = get_location()
+        print("current city is:",
+            city_name)
+
+# complete_url variable to store 
+# complete url address 
+        complete_url = base_url + "appid=" + api_key +"&q=" + city_name
+# get method of requests module 
+# return response object 
+        response = requests.get(complete_url) 
+
+# json method of response object 
+# convert json format data into 
+# python format data 
+        x = response.json() 
+
+# Now x contains list of nested dictionaries 
+# Check the value of "cod" key is equal to 
+# "404", means city is found otherwise, 
+# city is not found 
+        if x["cod"] != "404":
+            
+        
+
+    # store the value of "main" 
+    # key in variable y 
+            y = x["main"] 
+
+    # store the value corresponding 
+    # to the "temp" key of y 
+            current_temperature = y["temp"]  
+
+    # store the value corresponding 
+    # to the "pressure" key of y 
+            current_pressure = y["pressure"] 
+
+    # store the value corresponding 
+    # to the "humidity" key of y 
+            current_humidiy = y["humidity"] 
+
+    # store the value of "weather" 
+    # key in variable z 
+            z = x["weather"] 
+
+    # store the value corresponding 
+    # to the "description" key at 
+    # the 0th index of z 
+            weather_description = z[0]["description"] 
+
+    # print following values
+             
+            print(" Temperature (in kelvin unit) = " +
+                    str(current_temperature) +
+                    "\n atmospheric pressure (in hPa unit) = " +
+                    str(current_pressure) +
+                    "\n humidity (in percentage) = " +
+                    str(current_humidiy) +
+                    "\n description = " +
+                    str(weather_description)) 
+
+        else: 
+            print(" City Not Found ") 
+
+        engine.say(y["pressure"])
+        engine.runAndWait()
+        engine.say('humidity')
+        engine.runAndWait()
+        engine.say(current_humidiy)
+        engine.runAndWait()
+        engine.say('temperature')
+        engine.runAndWait()
+        engine.say(current_temperature)
+        engine.runAndWait()x['rating'],
             reverse=True)
         sorted_stores = [x['name'] for x in sorted_stores_data][:5]
         if "order" in translate:
