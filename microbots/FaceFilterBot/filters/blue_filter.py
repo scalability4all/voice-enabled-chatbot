@@ -26,8 +26,9 @@ def extractSkin(image):
     # Converting the image back to BRG color space
     img = cv2.cvtColor(skin,cv2.COLOR_HSV2BGR)
 
-    # Observed BGR to RGBA conversion gives a more appropriate color tint that opencv colormask options
-    # Added alpha channel to convert black pixels transparent and overlap (WIP) 
+    # Observed BGR to RGBA conversion gives a more appropriate color tint that 
+    # opencv colormask options
+    # Added alpha channel to convert black pixels transparent and overlap (WIP)
     img_a = cv2.cvtColor(img, cv2.COLOR_BGR2RGBA)
     
     # Return the Skin image

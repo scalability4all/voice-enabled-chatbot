@@ -185,7 +185,8 @@ while True:
                 "Showing you directions to the store {}".format(
                     sorted_stores[0]))
             engine.runAndWait()
-    elif "stores" in translate.split(" ") or "food" in translate.split(" ") or "restaurant" in translate:
+    elif ("stores" in translate.split(" ") or "food" in translate.split(" ") or 
+          "restaurant" in translate):
         stores = []
         stores_data = {}
         query = filter_sentence(translate)

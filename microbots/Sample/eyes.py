@@ -40,14 +40,21 @@ def PlaceEye(frame, eyeCenter, eyeSize):
     eyeOverlayHeight = y2 - y1
 
     # calculate the masks for the overlay
-    eyeOverlay = cv2.resize(filter, (eyeOverlayWidth, eyeOverlayHeight), interpolation=cv2.INTER_AREA)
-    mask = cv2.resize(filterMask, (eyeOverlayWidth, eyeOverlayHeight), interpolation=cv2.INTER_AREA)
-    mask_inv = cv2.resize(filterMaskInv, (eyeOverlayWidth, eyeOverlayHeight), interpolation=cv2.INTER_AREA)
+    eyeOverlay = cv2.resize(filter, 
+                            (eyeOverlayWidth, eyeOverlayHeight), 
+                            interpolation=cv2.INTER_AREA)
+    mask = cv2.resize(filterMask, 
+                     (eyeOverlayWidth, eyeOverlayHeight), 
+                     interpolation=cv2.INTER_AREA)
+    mask_inv = cv2.resize(filterMaskInv, 
+                         (eyeOverlayWidth, eyeOverlayHeight), 
+                         interpolation=cv2.INTER_AREA)
 
     # take ROI for the verlay from background, equal to size of the overlay image
     roi = frame[y1:y2, x1:x2]
 
-    # roi_bg contains the original image only where the overlay is not, in the region that is the size of the overlay.
+    # roi_bg contains the original image only where the overlay is not, 
+    # in the region that is the size of the overlay.
     roi_bg = cv2.bitwise_and(roi, roi, mask=mask_inv)
 
     # roi_fg contains the image pixels of the overlay only where the overlay should be
