@@ -1,5 +1,6 @@
 import random
 import datetime
+from time import gmtime
 import webbrowser
 import pyttsx3
 import wikipedia
@@ -13,7 +14,7 @@ import pyjokes
 
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[10].id)
+engine.setProperty('voice', voices[0].id)
 volume = engine.getProperty('volume')
 engine.setProperty('volume', 10.0)
 rate = engine.getProperty('rate')
@@ -63,7 +64,6 @@ while True:
     if speech_type.lower() != "speech":
         translate = input("Type: ")
     else:
-        now = datetime.datetime.now()
         r = sr.Recognizer()
         with sr.Microphone() as source:
             print("Tell me something:")
@@ -136,9 +136,10 @@ while True:
         engine.say(w.get_temperature('celsius'))
         engine.runAndWait()
     elif translate in var3:
+        n1 = datetime.datetime.now()
         print("Current date and time : ")
-        print(now.strftime("The time is %H:%M"))
-        engine.say(now.strftime("The time is %H:%M"))
+        print(n1.strftime("The time is %H:%M"),gmtime())
+        engine.say(n1.strftime("The time is %H:%M"))
         engine.runAndWait()
     elif translate in cmd1:
         webbrowser.open('http://www.google.com')
