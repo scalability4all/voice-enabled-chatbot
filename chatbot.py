@@ -138,7 +138,7 @@ while True:
     elif translate in var3:
         n1 = datetime.datetime.now()
         print("Current date and time : ")
-        print(n1.strftime("The time is %H:%M"),gmtime())
+        print(n1.strftime("The time is %H:%M"), gmtime())
         engine.say(n1.strftime("The time is %H:%M"))
         engine.runAndWait()
     elif translate in cmd1:
