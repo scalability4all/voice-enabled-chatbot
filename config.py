@@ -6,4 +6,3 @@ weather_api_key = ""  # add config key
 domains = ['music', 'restaurant', 'weather']
 
 geolocation_api = "https://geolocation-db.com/json"
-

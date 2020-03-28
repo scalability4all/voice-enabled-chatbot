@@ -10,9 +10,9 @@ from nltk.corpus import wordnet
 from nltk.stem import WordNetLemmatizer
 from nltk.metrics import *
 from config import domains
+
 # Init the Wordnet Lemmatizer
 lemmatizer = WordNetLemmatizer()
-
 
 data = {}
 for domain in domains:
@@ -26,23 +26,24 @@ all_words = []
 document = [(text, category) for category in data.keys() for text in data[category]]
 random.shuffle(document)
 
-array_words = [nltk.word_tokenize(w) for (w, cat) in document];
+array_words = [nltk.word_tokenize(w) for (w, cat) in document]
 flat_list = [word for sent in array_words for word in sent]
 
-"""Removes the **stop words** like ( ‘off’, ‘is’, ‘s’, ‘am’, ‘or’) and  ***non alphabetical*** characters"""
+"""Removes the **stop words** like ( ‘off’, ‘is’, ‘s’, ‘am’, ‘or’) and  
+  ***non alphabetical*** characters"""
 
 stopWords = set(stopwords.words('english'))
 
 
 def remove_stop_words(words):
-    wordsFiltered = []
+    words_filtered = []
 
     for w in words:
         if w not in stopWords:
             if w.isalpha():
-                wordsFiltered.append(w)
+                words_filtered.append(w)
 
-    return wordsFiltered
+    return words_filtered
 
 
 flat_list = remove_stop_words(flat_list)
@@ -75,7 +76,7 @@ word_features = list(frequencyDistribution)[:2000]
 """**FEATURE** **EXTRACTION**"""
 
 
-def feature_Extraction(doc):
+def feature_extraction(doc):
     document_words = [word.lower() for word in nltk.word_tokenize(doc)]
 
     document_words = remove_stop_words(document_words)
@@ -88,8 +89,8 @@ def feature_Extraction(doc):
 
 """Training the model"""
 
-test_set = nltk.classify.apply_features(feature_Extraction, document[:500])
-train_set = nltk.classify.apply_features(feature_Extraction, document[500:])
+test_set = nltk.classify.apply_features(feature_extraction, document[:500])
+train_set = nltk.classify.apply_features(feature_extraction, document[500:])
 classifier = nltk.NaiveBayesClassifier.train(train_set)
 
 """Testing the model *accuracy*"""
@@ -98,7 +99,8 @@ print('Accuracy:', nltk.classify.accuracy(classifier, test_set))
 
 classifier.show_most_informative_features(20)
 
-"""Measuring **Precision,Recall,F-Measure** of a classifier.Finding **Confusion matrix**"""
+"""Measuring **Precision,Recall,F-Measure** of a classifier.
+  Finding **Confusion matrix**"""
 
 actual_set = collections.defaultdict(set)
 predicted_set = collections.defaultdict(set)
@@ -125,7 +127,7 @@ print(confusion_matrix)
 """**OUTPUTS**"""
 
 print('Intent Classification Outputs')
-print("Is it sunnier today? ->", classifier.classify(feature_Extraction("Is it sunnier today?")))
-print("book a table ->", classifier.classify(feature_Extraction("book a table")))
+print("Is it sunnier today? ->", classifier.classify(feature_extraction("Is it sunnier today?")))
+print("book a table ->", classifier.classify(feature_extraction("book a table")))
 print("I want to listen to popular telugu song ->",
-      classifier.classify(feature_Extraction(" I want to listen to popular telugu song ")))
+      classifier.classify(feature_extraction(" I want to listen to popular telugu song ")))

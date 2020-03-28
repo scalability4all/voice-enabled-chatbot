@@ -1,3 +1,4 @@
+pandas
 wikipedia
 SpeechRecognition
 pygame
