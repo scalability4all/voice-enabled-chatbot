@@ -12,7 +12,7 @@ from google_places import *
 
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[10].id)
+engine.setProperty('voice', voices[1].id)
 volume = engine.getProperty('volume')
 engine.setProperty('volume', 10.0)
 rate = engine.getProperty('rate')
