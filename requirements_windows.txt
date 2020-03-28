@@ -1,5 +1,5 @@
 anaconda-client
-#anaconda-navigator
+anaconda-navigator
 attrs
 backcall
 beautifulsoup4
@@ -11,7 +11,7 @@ clyent
 colorama
 conda
 conda-build
-#conda-package-handling
+conda-package-handling
 cryptography
 decorator
 defusedxml
@@ -30,7 +30,7 @@ jupyter-client
 jupyter-core
 libarchive-c
 MarkupSafe
-#menuinst
+menuinst
 mistune
 nbconvert
 nbformat
