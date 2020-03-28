@@ -1,7 +1,4 @@
 import nltk
-
-nltk.download()
-
 import random
 import collections
 import pandas as pd
@@ -10,6 +7,8 @@ from nltk.corpus import wordnet
 from nltk.stem import WordNetLemmatizer
 from nltk.metrics import *
 from config import domains
+
+nltk.download()
 
 # Init the Wordnet Lemmatizer
 lemmatizer = WordNetLemmatizer()
@@ -23,13 +22,15 @@ for domain in domains:
 
 all_words = []
 
-document = [(text, category) for category in data.keys() for text in data[category]]
+document = [(text, category)
+            for category in data.keys()
+            for text in data[category]]
 random.shuffle(document)
 
 array_words = [nltk.word_tokenize(w) for (w, cat) in document]
 flat_list = [word for sent in array_words for word in sent]
 
-"""Removes the **stop words** like ( ‘off’, ‘is’, ‘s’, ‘am’, ‘or’) and  
+"""Removes the **stop words** like ( ‘off’, ‘is’, ‘s’, ‘am’, ‘or’) and
   ***non alphabetical*** characters"""
 
 stopWords = set(stopwords.words('english'))
@@ -48,7 +49,8 @@ def remove_stop_words(words):
 
 flat_list = remove_stop_words(flat_list)
 
-"""**Lemmatization** i.e., tranforms different forms of words to a single one"""
+"""**Lemmatization** i.e., tranforms different
+            forms of words to a single one"""
 
 
 def get_wordnet_pos(word):
@@ -116,9 +118,12 @@ for i, (feature, label) in enumerate(test_set):
     predicted_set_cm.append(predicted_label)
 
 for category in data.keys():
-    print(category, 'precision :', precision(actual_set[category], predicted_set[category]))
-    print(category, 'recall :', recall(actual_set[category], predicted_set[category]))
-    print(category, 'f-measure :', f_measure(actual_set[category], predicted_set[category]))
+    print(category, 'precision :',
+          precision(actual_set[category], predicted_set[category]))
+    print(category, 'recall :',
+          recall(actual_set[category], predicted_set[category]))
+    print(category, 'f-measure :',
+          f_measure(actual_set[category], predicted_set[category]))
 
 confusion_matrix = ConfusionMatrix(actual_set_cm, predicted_set_cm)
 print('Confusion Matrix')
@@ -127,7 +132,10 @@ print(confusion_matrix)
 """**OUTPUTS**"""
 
 print('Intent Classification Outputs')
-print("Is it sunnier today? ->", classifier.classify(feature_extraction("Is it sunnier today?")))
-print("book a table ->", classifier.classify(feature_extraction("book a table")))
+print("Is it sunnier today? ->",
+      classifier.classify(feature_extraction("Is it sunnier today?")))
+print("book a table ->",
+      classifier.classify(feature_extraction("book a table")))
 print("I want to listen to popular telugu song ->",
-      classifier.classify(feature_extraction(" I want to listen to popular telugu song ")))
+      classifier.classify(feature_extraction(
+          " I want to listen to popular telugu song ")))
