@@ -1,6 +1,5 @@
 import random
 import datetime
-from time import gmtime
 import webbrowser
 import pyttsx3
 import wikipedia
@@ -29,6 +28,7 @@ var2 = ['I_was_created_by_Edward_right_in_his_computer.',
         'Edward', 'Some_guy_whom_i_never_got_to_know.']
 var3 = ['what time is it', 'what is the time', 'time']
 var4 = ['who are you', 'what is you name']
+var5 = ['date', 'what is the date', 'what date is it', 'tell me the date']
 cmd1 = ['open browser', 'open google']
 cmd2 = ['play music', 'play songs', 'play a song', 'open music player']
 cmd3 = [
@@ -135,12 +135,16 @@ while True:
         engine.runAndWait()
         engine.say(w.get_temperature('celsius'))
         engine.runAndWait()
-    elif translate in var3:
-        n1 = datetime.datetime.now()
-        print("Current date and time : ")
-        print(n1.strftime("The time is %H:%M"), gmtime())
-        engine.say(n1.strftime("The time is %H:%M"))
-        engine.runAndWait()
+    elif (translate in var3 or translate in var5):
+        current_time = datetime.datetime.now()
+        if translate in var3:
+            print(current_time.strftime("The time is %H:%M"))
+            engine.say(current_time.strftime("The time is %H:%M"))
+            engine.runAndWait()
+        elif translate in var5:
+            print(current_time.strftime("The date is %B %d, %Y"))
+            engine.say(current_time.strftime("The date is %B %d %Y"))
+            engine.runAndWait()
     elif translate in cmd1:
         webbrowser.open('http://www.google.com')
     elif translate in cmd3:
