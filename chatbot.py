@@ -135,7 +135,7 @@ while True:
         engine.runAndWait()
         engine.say(w.get_temperature('celsius'))
         engine.runAndWait()
-    elif (translate in var3 or translate in var5):
+    elif translate in var3 or translate in var5:
         current_time = datetime.datetime.now()
         if translate in var3:
             print(current_time.strftime("The time is %H:%M"))

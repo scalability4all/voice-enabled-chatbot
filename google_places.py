@@ -61,7 +61,6 @@ def change_location_query(address, key):
         address, key)
     r = requests.get(url)
     x = r.json()
-    print(x)
     user = namedtuple('User', 'city longitude latitude place_id')
     try:
         x = x['results']
