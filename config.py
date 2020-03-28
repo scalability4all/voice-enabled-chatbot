@@ -1,5 +1,5 @@
 google_api_key = ""  # add config key
-weather_api_key = ""  # add config keys
+weather_api_key = ""  # add config key
 
 
 # adding domains for intent classification
