@@ -64,7 +64,7 @@ newRow = models.Register(
     col1=tableRow[0],
     col2=tableRow[1],
     col3=int(tableRow[2]),
-    )
+)
 obj.insertRow(newRow)
 getData = obj.allRow()
 print(getData)
