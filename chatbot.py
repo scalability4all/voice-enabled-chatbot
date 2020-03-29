@@ -48,7 +48,7 @@ cmd6 = ['exit', 'close', 'goodbye', 'nothing', 'catch you later', 'bye']
 cmd7 = [
     'what is your color',
     'what is your colour',
-    'your color',]
+    'your color']
 colrep = [
     'Right now its rainbow',
     'Right now its transparent',
