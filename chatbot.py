@@ -27,7 +27,7 @@ rate = engine.getProperty('rate')
 
 engine.setProperty('rate', rate - 25)
 
-greetings = ['hey there', 'hello', 'hi', 'Hai', 'hey']
+greetings = ['hey there', 'hello', 'hi', 'hai', 'hey', 'hi there']
 question = ['how are you', 'how are you doing', "whats up"]
 responses = ['Okay', "I'm fine", "I am fine."]
 var1 = ['who made you', 'who created you']
@@ -48,8 +48,7 @@ cmd6 = ['exit', 'close', 'goodbye', 'nothing', 'catch you later', 'bye']
 cmd7 = [
     'what is your color',
     'what is your colour',
-    'your color',
-    'your color?']
+    'your color',]
 colrep = [
     'Right now its rainbow',
     'Right now its transparent',
@@ -71,7 +70,7 @@ while True:
         translate = input("Type: ").lower()
         translate = translate.translate(table)
         translate = spell.correction(translate)
-        print(translate)
+        # print(translate)
     else:
         now = datetime.datetime.now()
         r = sr.Recognizer()
@@ -85,7 +84,7 @@ while True:
                 translate = r.recognize_google(audio)
                 translate = spell.correction(translate)
                 print("You said:- " + translate)
-
+                translate = translate.translate(table)
             except sr.UnknownValueError:
                 print("Could not understand audio")
                 engine.say('I didnt get that. Rerun the code')
