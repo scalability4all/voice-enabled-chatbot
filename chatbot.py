@@ -9,7 +9,14 @@ import config
 import speech_recognition as sr
 from google_places import *
 import pyjokes
+import string
+from spellchecker import SpellChecker
 # from speech_recognition.__main__ import r, audio
+
+# to remove punctuations from input string
+table = str.maketrans('', '', string.punctuation)
+# to check spelling errors
+spell = SpellChecker()
 
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
@@ -20,9 +27,9 @@ rate = engine.getProperty('rate')
 
 engine.setProperty('rate', rate - 25)
 
-greetings = ['hey there', 'hello', 'hi', 'Hai', 'hey!', 'hey', 'hi there!']
-question = ['How are you?', 'How are you doing?', 'What\'s up?']
-responses = ['Okay', "I'm fine"]
+greetings = ['hey there', 'hello', 'hi', 'Hai', 'hey']
+question = ['how are you', 'how are you doing']
+responses = ['Okay', "I'm fine", "I am fine."]
 var1 = ['who made you', 'who created you']
 var2 = ['I_was_created_by_Edward_right_in_his_computer.',
         'Edward', 'Some_guy_whom_i_never_got_to_know.']
@@ -61,7 +68,10 @@ change_location = False
 while True:
     speech_type = input('Speech/Text: ')
     if speech_type.lower() != "speech":
-        translate = input("Type: ")
+        translate = input("Type: ").lower()
+        translate = translate.translate(table)
+        translate = spell.correction(translate)
+        print(translate)
     else:
         now = datetime.datetime.now()
         r = sr.Recognizer()
@@ -73,7 +83,9 @@ while True:
             audio = r.listen(source)
             try:
                 translate = r.recognize_google(audio)
+                translate = spell.correction(translate)
                 print("You said:- " + translate)
+
             except sr.UnknownValueError:
                 print("Could not understand audio")
                 engine.say('I didnt get that. Rerun the code')
