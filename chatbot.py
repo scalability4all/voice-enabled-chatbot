@@ -8,8 +8,10 @@ import pyowm
 import config
 import speech_recognition as sr
 from google_places import *
+
 import pyjokes
 # from speech_recognition.__main__ import r, audio
+from intentClassification.intent_classification import IntentClassification
 
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
@@ -19,6 +21,8 @@ engine.setProperty('volume', 10.0)
 rate = engine.getProperty('rate')
 
 engine.setProperty('rate', rate - 25)
+
+intentClassifier = IntentClassification()
 
 greetings = ['hey there', 'hello', 'hi', 'Hai', 'hey!', 'hey', 'hi there!']
 question = ['How are you?', 'How are you doing?', 'What\'s up?']
@@ -36,7 +40,8 @@ cmd3 = [
     'say something funny',
     'tell something funny']
 cmd4 = ['open youtube', 'i want to watch a video']
-cmd5 = ['tell me the weather', 'weather', 'what about the weather', 'what\'s the weather']
+cmd5 = ['tell me the weather', 'weather',
+        'what about the weather', 'what\'s the weather']
 cmd6 = ['exit', 'close', 'goodbye', 'nothing', 'catch you later', 'bye']
 cmd7 = [
     'what is your color',
@@ -78,6 +83,39 @@ while True:
                 print("Could not understand audio")
                 engine.say('I didnt get that. Rerun the code')
                 engine.runAndWait()
+    intent = intentClassifier.intent_identifier(translate)
+    print('Intent:', intent)
+    # TODO:: entity based weather output
+    if intent == 'weather':
+        print("here")
+        owm = pyowm.OWM(config.weather_api_key)
+        observation = owm.weather_at_place('Bangalore, IN')
+        observation_list = owm.weather_around_coords(12.972442, 77.580643)
+        w = observation.get_weather()
+        w.get_wind()
+        w.get_humidity()
+        w.get_temperature('celsius')
+        print(w)
+        print(w.get_wind())
+        print(w.get_humidity())
+        print(w.get_temperature('celsius'))
+        engine.say(w.get_wind())
+        engine.runAndWait()
+        engine.say('humidity')
+        engine.runAndWait()
+        engine.say(w.get_humidity())
+        engine.runAndWait()
+        engine.say('temperature')
+        engine.runAndWait()
+        engine.say(w.get_temperature('celsius'))
+        engine.runAndWait()
+    if intent == 'music' or intent == 'restaurant':
+        engine.say("please wait")
+        engine.runAndWait()
+        print(wikipedia.summary(translate))
+        engine.say(wikipedia.summary(translate))
+        engine.runAndWait()
+
     if translate in greetings:
         random_greeting = random.choice(greetings)
         print(random_greeting)
@@ -147,7 +185,8 @@ while True:
         print(jokrep)
         engine.say(jokrep)
         engine.runAndWait()
-    elif ("them" in translate.split(" ") or "popular" in translate.split(" ")) and stores:
+    elif ("them" in translate.split(" ") or
+          "popular" in translate.split(" ")) and stores:
         sorted_stores_data = sorted(
             stores_data,
             key=lambda x: x['rating'],
@@ -170,7 +209,8 @@ while True:
                 "Showing you directions to the store {}".format(
                     sorted_stores[0]))
             engine.runAndWait()
-    elif "stores" in translate.split(" ") or "food" in translate.split(" ") or "restaurant" in translate:
+    elif "stores" in translate.split(" ") or \
+            "food" in translate.split(" ") or "restaurant" in translate:
         stores = []
         stores_data = {}
         query = filter_sentence(translate)
