@@ -28,7 +28,7 @@ rate = engine.getProperty('rate')
 engine.setProperty('rate', rate - 25)
 
 greetings = ['hey there', 'hello', 'hi', 'Hai', 'hey']
-question = ['how are you', 'how are you doing']
+question = ['how are you', 'how are you doing', "whats up"]
 responses = ['Okay', "I'm fine", "I am fine."]
 var1 = ['who made you', 'who created you']
 var2 = ['I_was_created_by_Edward_right_in_his_computer.',
