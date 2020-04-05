@@ -13,7 +13,7 @@ import pyjokes
 
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[1].id)
+engine.setProperty('voice', voices[0].id)
 volume = engine.getProperty('volume')
 engine.setProperty('volume', 10.0)
 rate = engine.getProperty('rate')
@@ -28,6 +28,7 @@ var2 = ['I_was_created_by_Edward_right_in_his_computer.',
         'Edward', 'Some_guy_whom_i_never_got_to_know.']
 var3 = ['what time is it', 'what is the time', 'time']
 var4 = ['who are you', 'what is you name']
+var5 = ['date', 'what is the date', 'what date is it', 'tell me the date']
 cmd1 = ['open browser', 'open google']
 cmd2 = ['play music', 'play songs', 'play a song', 'open music player']
 cmd3 = [
@@ -63,7 +64,6 @@ while True:
     if speech_type.lower() != "speech":
         translate = input("Type: ")
     else:
-        now = datetime.datetime.now()
         r = sr.Recognizer()
         with sr.Microphone() as source:
             print("Tell me something:")
@@ -139,11 +139,16 @@ while True:
                    "and wind blowing at a speed of {}".
                    format(city, skyDescription, temp, humidity, windSpeed))
         engine.runAndWait()
-    elif translate in var3:
-        print("Current date and time : ")
-        print(now.strftime("The time is %H:%M"))
-        engine.say(now.strftime("The time is %H:%M"))
-        engine.runAndWait()
+    elif translate in var3 or translate in var5:
+        current_time = datetime.datetime.now()
+        if translate in var3:
+            print(current_time.strftime("The time is %H:%M"))
+            engine.say(current_time.strftime("The time is %H:%M"))
+            engine.runAndWait()
+        elif translate in var5:
+            print(current_time.strftime("The date is %B %d, %Y"))
+            engine.say(current_time.strftime("The date is %B %d %Y"))
+            engine.runAndWait()
     elif translate in cmd1:
         webbrowser.open('http://www.google.com')
     elif translate in cmd3:
