@@ -53,7 +53,7 @@ cmd9 = ['thank you']
 
 repfr9 = ['youre welcome', 'glad i could help you']
 
-personalized = get_location()
+personalized, longitude, latitude = get_location()
 stores = []
 stores_data = {}
 
@@ -114,26 +114,30 @@ while True:
         exit()
     elif translate in cmd5:
         print("here")
-        owm = pyowm.OWM(config.weather_api_key)
-        observation = owm.weather_at_place('Bangalore, IN')
-        observation_list = owm.weather_around_coords(12.972442, 77.580643)
-        w = observation.get_weather()
-        w.get_wind()
-        w.get_humidity()
-        w.get_temperature('celsius')
-        print(w)
-        print(w.get_wind())
-        print(w.get_humidity())
-        print(w.get_temperature('celsius'))
-        engine.say(w.get_wind())
-        engine.runAndWait()
-        engine.say('humidity')
-        engine.runAndWait()
-        engine.say(w.get_humidity())
-        engine.runAndWait()
-        engine.say('temperature')
-        engine.runAndWait()
-        engine.say(w.get_temperature('celsius'))
+        url = "http://api.openweathermap.org/data/2.5/weather?lat={}&lon={}&appid={}&units={}".\
+            format(latitude, longitude, config.weather_api_key,
+                   config.weather_temperature_format)
+        r = requests.get(url)
+        x = r.json()
+        city = x['name']
+        windSpeed = x['wind']['speed']
+        skyDescription = x['weather'][0]['description']
+        maxTemperature = x['main']['temp_max']
+        minTemperature = x['main']['temp_min']
+        temp = x['main']['temp']
+        humidity = x['main']['humidity']
+        pressure = x['main']['pressure']
+        # use the above variables based on user needs
+        print("Weather in {} is {} "
+              "with temperature {} celsius"
+              ", humidity in the air is {} "
+              "and wind blowing at a speed of {}".
+              format(city, skyDescription, temp, humidity, windSpeed))
+        engine.say("Weather in {} is {} "
+                   "with temperature {} celsius"
+                   ", humidity in the air is {} "
+                   "and wind blowing at a speed of {}".
+                   format(city, skyDescription, temp, humidity, windSpeed))
         engine.runAndWait()
     elif translate in var3 or translate in var5:
         current_time = datetime.datetime.now()
@@ -175,7 +179,9 @@ while True:
                 "Showing you directions to the store {}".format(
                     sorted_stores[0]))
             engine.runAndWait()
-    elif "stores" in translate.split(" ") or "food" in translate.split(" ") or "restaurant" in translate:
+    elif "stores" in translate.split(" ") or\
+         "food" in translate.split(" ") or\
+         "restaurant" in translate:
         stores = []
         stores_data = {}
         query = filter_sentence(translate)
