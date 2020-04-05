@@ -7,7 +7,7 @@ import pandas as pd
 from nltk.corpus import stopwords
 from nltk.corpus import wordnet
 from nltk.stem import WordNetLemmatizer
-from nltk.metrics import *
+from nltk.metrics import precision, recall, f_measure, ConfusionMatrix
 from config import domains
 
 nltk.download()
@@ -99,7 +99,7 @@ class IntentClassification:
         for word in self.word_features:
             if word in document_words:
                 features['contains({})'.format(word)] = (
-                        word in document_words)
+                    word in document_words)
         return features
 
     def measuring_accuracy(self):
@@ -128,7 +128,6 @@ class IntentClassification:
                   recall(actual_set[category], predicted_set[category]))
             print(category, 'f-measure :',
                   f_measure(actual_set[category], predicted_set[category]))
-
         confusion_matrix = ConfusionMatrix(actual_set_cm, predicted_set_cm)
         print('Confusion Matrix')
         print(confusion_matrix)
