@@ -8,6 +8,7 @@ import pyowm
 import config
 import speech_recognition as sr
 from google_places import *
+import pyjokes
 # from speech_recognition.__main__ import r, audio
 
 engine = pyttsx3.init()
@@ -19,8 +20,8 @@ rate = engine.getProperty('rate')
 
 engine.setProperty('rate', rate - 25)
 
-greetings = ['hey there', 'hello', 'hi', 'Hai', 'hey!', 'hey']
-question = ['How are you?', 'How are you doing?']
+greetings = ['hey there', 'hello', 'hi', 'Hai', 'hey!', 'hey', 'hi there!']
+question = ['How are you?', 'How are you doing?', 'What\'s up?']
 responses = ['Okay', "I'm fine"]
 var1 = ['who made you', 'who created you']
 var2 = ['I_was_created_by_Edward_right_in_his_computer.',
@@ -35,8 +36,8 @@ cmd3 = [
     'say something funny',
     'tell something funny']
 cmd4 = ['open youtube', 'i want to watch a video']
-cmd5 = ['tell me the weather', 'weather', 'what about the weather']
-cmd6 = ['exit', 'close', 'goodbye', 'nothing']
+cmd5 = ['tell me the weather', 'weather', 'what about the weather', 'what\'s the weather']
+cmd6 = ['exit', 'close', 'goodbye', 'nothing', 'catch you later', 'bye']
 cmd7 = [
     'what is your color',
     'what is your colour',
@@ -55,21 +56,6 @@ personalized, longitude, latitude = get_location()
 stores = []
 stores_data = {}
 
-
-"""with sr.Microphone() as source:
-    r.adjust_for_ambient_noise(source)
-    print "Say Something"
-    #listens for the user's input
-    audio = r.listen(source)
-
-    try:
-        text = r.recognize_google(audio)
-        print "you said: " + text
-
-    #error occurs when google could not understand what was said
-
-    except sr.UnknownValueError:
-        print("Google Speech Recognition could not understand audio") """
 print("hi ", "Setting location through ip bias, Change location?")
 change_location = False
 while True:
@@ -122,7 +108,7 @@ while True:
         engine.say('I am a bot, silly')
         engine.runAndWait()
     elif translate in cmd4:
-        webbrowser.open('www.youtube.com')
+        webbrowser.open('http://www.youtube.com')
     elif translate in cmd6:
         print('see you later')
         exit()
@@ -159,9 +145,10 @@ while True:
         engine.say(now.strftime("The time is %H:%M"))
         engine.runAndWait()
     elif translate in cmd1:
-        webbrowser.open('www.google.com')
+        webbrowser.open('http://www.google.com')
     elif translate in cmd3:
-        jokrep = random.choice(jokes)
+        jokrep = pyjokes.get_joke()
+        print(jokrep)
         engine.say(jokrep)
         engine.runAndWait()
     elif ("them" in translate.split(" ") or "popular" in translate.split(" ")) and stores:
@@ -211,4 +198,4 @@ while True:
         engine.say(wikipedia.summary(translate))
         engine.runAndWait()
         userInput3 = input("or else search in google")
-        webbrowser.open_new('www.google.com/search?q=' + userInput3)
+        webbrowser.open_new('http://www.google.com/search?q=' + userInput3)
