@@ -44,7 +44,7 @@ def get_location():
     response = requests.get(url)
     data = response.json()
     data_named = namedtuple("User", data.keys())(*data.values())
-    return data_named
+    return data_named, data['longitude'], data['latitude']
 
 
 def filter_sentence(text):
