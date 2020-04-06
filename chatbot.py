@@ -13,14 +13,15 @@ from googletrans import Translator
 from voice_conf import *
 # from speech_recognition.__main__ import r, audio
 
-greetings = ['hey there', 'hello', 'hi', 'Hai', 'hey!', 'hey']
-question = ['How are you?', 'How are you doing?']
+greetings = ['hey there', 'hello', 'hi', 'Hai', 'hey!', 'hey', 'hi there!']
+question = ['How are you?', 'How are you doing?', 'What\'s up?']
 responses = ['Okay', "I'm fine"]
 var1 = ['who made you', 'who created you']
 var2 = ['I_was_created_by_Edward_right_in_his_computer.',
         'Edward', 'Some_guy_whom_i_never_got_to_know.']
 var3 = ['what time is it', 'what is the time', 'time']
 var4 = ['who are you', 'what is you name']
+var5 = ['date', 'what is the date', 'what date is it', 'tell me the date']
 cmd1 = ['open browser', 'open google']
 cmd2 = ['play music', 'play songs', 'play a song', 'open music player']
 cmd3 = [
@@ -29,8 +30,12 @@ cmd3 = [
     'say something funny',
     'tell something funny']
 cmd4 = ['open youtube', 'i want to watch a video']
-cmd5 = ['tell me the weather', 'weather', 'what about the weather']
-cmd6 = ['exit', 'close', 'goodbye', 'nothing']
+cmd5 = [
+    'tell me the weather',
+    'weather',
+    'what about the weather',
+    'what\'s the weather']
+cmd6 = ['exit', 'close', 'goodbye', 'nothing', 'catch you later', 'bye']
 cmd7 = [
     'what is your color',
     'what is your colour',
@@ -45,30 +50,16 @@ cmd9 = ['thank you']
 
 repfr9 = ['youre welcome', 'glad i could help you']
 
-personalized = get_location()
+personalized, longitude, latitude = get_location()
 stores = []
 stores_data = {}
 
-
-"""with sr.Microphone() as source:
-    r.adjust_for_ambient_noise(source)
-    print "Say Something"
-    #listens for the user's input
-    audio = r.listen(source)
-
-    try:
-        text = r.recognize_google(audio)
-        print "you said: " + text
-
-    #error occurs when google could not understand what was said
-
-    except sr.UnknownValueError:
-        print("Google Speech Recognition could not understand audio") """
 print("hi ", "Setting location through ip bias, Change location?")
 change_location = False
 
 language_conf = input('Language(en-US): ')
-if language_conf == '': language_conf = "en-US"
+if language_conf == '':
+    language_conf = "en-US"
 voice_language = getVoiceID(language_conf[:2])
 
 engine = pyttsx3.init()
@@ -87,7 +78,6 @@ while True:
     if speech_type.lower() != "speech":
         translate = input("Type: ")
     else:
-        now = datetime.datetime.now()
         r = sr.Recognizer()
         with sr.Microphone() as source:
             t = translator.translate('Say something', dest=language_conf[:2])
@@ -139,32 +129,41 @@ while True:
         exit()
     elif translate in cmd5:
         print("here")
-        owm = pyowm.OWM(config.weather_api_key)
-        observation = owm.weather_at_place('Bangalore, IN')
-        observation_list = owm.weather_around_coords(12.972442, 77.580643)
-        w = observation.get_weather()
-        w.get_wind()
-        w.get_humidity()
-        w.get_temperature('celsius')
-        print(w)
-        print(w.get_wind())
-        print(w.get_humidity())
-        print(w.get_temperature('celsius'))
-        engine.say(w.get_wind())
+        url = "http://api.openweathermap.org/data/2.5/weather?lat={}&lon={}&appid={}&units={}".\
+            format(latitude, longitude, config.weather_api_key,
+                   config.weather_temperature_format)
+        r = requests.get(url)
+        x = r.json()
+        city = x['name']
+        windSpeed = x['wind']['speed']
+        skyDescription = x['weather'][0]['description']
+        maxTemperature = x['main']['temp_max']
+        minTemperature = x['main']['temp_min']
+        temp = x['main']['temp']
+        humidity = x['main']['humidity']
+        pressure = x['main']['pressure']
+        # use the above variables based on user needs
+        print("Weather in {} is {} "
+              "with temperature {} celsius"
+              ", humidity in the air is {} "
+              "and wind blowing at a speed of {}".
+              format(city, skyDescription, temp, humidity, windSpeed))
+        engine.say("Weather in {} is {} "
+                   "with temperature {} celsius"
+                   ", humidity in the air is {} "
+                   "and wind blowing at a speed of {}".
+                   format(city, skyDescription, temp, humidity, windSpeed))
         engine.runAndWait()
-        engine.say('humidity')
-        engine.runAndWait()
-        engine.say(w.get_humidity())
-        engine.runAndWait()
-        engine.say('temperature')
-        engine.runAndWait()
-        engine.say(w.get_temperature('celsius'))
-        engine.runAndWait()
-    elif translate in var3:
-        print("Current date and time : ")
-        print(now.strftime("The time is %H:%M"))
-        engine.say(now.strftime("The time is %H:%M"))
-        engine.runAndWait()
+    elif translate in var3 or translate in var5:
+        current_time = datetime.datetime.now()
+        if translate in var3:
+            print(current_time.strftime("The time is %H:%M"))
+            engine.say(current_time.strftime("The time is %H:%M"))
+            engine.runAndWait()
+        elif translate in var5:
+            print(current_time.strftime("The date is %B %d, %Y"))
+            engine.say(current_time.strftime("The date is %B %d %Y"))
+            engine.runAndWait()
     elif translate in cmd1:
         webbrowser.open('http://www.google.com')
     elif translate in cmd3:
@@ -172,7 +171,8 @@ while True:
         print(jokrep)
         engine.say(jokrep)
         engine.runAndWait()
-    elif ("them" in translate.split(" ") or "popular" in translate.split(" ")) and stores:
+    elif ("them" in translate.split(" ") or
+          "popular" in translate.split(" ")) and stores:
         sorted_stores_data = sorted(
             stores_data,
             key=lambda x: x['rating'],
@@ -195,7 +195,9 @@ while True:
                 "Showing you directions to the store {}".format(
                     sorted_stores[0]))
             engine.runAndWait()
-    elif "stores" in translate.split(" ") or "food" in translate.split(" ") or "restaurant" in translate:
+    elif "stores" in translate.split(" ") or\
+         "food" in translate.split(" ") or\
+         "restaurant" in translate:
         stores = []
         stores_data = {}
         query = filter_sentence(translate)

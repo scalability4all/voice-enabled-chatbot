@@ -1,0 +1,3 @@
+sqlalchemy
+pyttsx3
+psycopg2
