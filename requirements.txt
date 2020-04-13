@@ -9,3 +9,4 @@ pyttsx
 nltk
 numpy
 pyjokes
+googletrans
