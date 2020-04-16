@@ -30,11 +30,7 @@ cmd3 = [
     'say something funny',
     'tell something funny']
 cmd4 = ['open youtube', 'i want to watch a video']
-cmd5 = [
-    'tell me the weather',
-    'weather',
-    'what about the weather',
-    'what\'s the weather']
+cmd5 = ['tell me the weather', 'weather', 'what about the weather', 'what\'s the weather']
 cmd6 = ['exit', 'close', 'goodbye', 'nothing', 'catch you later', 'bye']
 cmd7 = [
     'what is your color',
@@ -56,7 +52,6 @@ stores_data = {}
 
 print("hi ", "Setting location through ip bias, Change location?")
 change_location = False
-
 language_conf = input('Language(en-US): ')
 if language_conf == '':
     language_conf = "en-US"
@@ -72,12 +67,12 @@ rate = engine.getProperty('rate')
 engine.setProperty('rate', rate - 25)
 
 translator = Translator()
-
 while True:
     speech_type = input('Speech/Text: ')
     if speech_type.lower() != "speech":
         translate = input("Type: ")
     else:
+        now = datetime.datetime.now()
         r = sr.Recognizer()
         with sr.Microphone() as source:
             t = translator.translate('Say something', dest=language_conf[:2])
@@ -93,6 +88,7 @@ while True:
                 print("Could not understand audio")
                 engine.say('I didnt get that. Rerun the code')
                 engine.runAndWait()
+    translate_split = translate.split(" ")
     if translate in greetings:
         random_greeting = random.choice(greetings)
         print(random_greeting)
@@ -130,8 +126,7 @@ while True:
     elif translate in cmd5:
         print("here")
         url = "http://api.openweathermap.org/data/2.5/weather?lat={}&lon={}&appid={}&units={}".\
-            format(latitude, longitude, config.weather_api_key,
-                   config.weather_temperature_format)
+              format(latitude, longitude, config.weather_api_key, config.weather_temperature_format)
         r = requests.get(url)
         x = r.json()
         city = x['name']
@@ -148,6 +143,7 @@ while True:
               ", humidity in the air is {} "
               "and wind blowing at a speed of {}".
               format(city, skyDescription, temp, humidity, windSpeed))
+
         engine.say("Weather in {} is {} "
                    "with temperature {} celsius"
                    ", humidity in the air is {} "
@@ -171,8 +167,7 @@ while True:
         print(jokrep)
         engine.say(jokrep)
         engine.runAndWait()
-    elif ("them" in translate.split(" ") or
-          "popular" in translate.split(" ")) and stores:
+    elif ("them" in translate_split or "popular" in translate_split) and stores:
         sorted_stores_data = sorted(
             stores_data,
             key=lambda x: x['rating'],
@@ -195,9 +190,7 @@ while True:
                 "Showing you directions to the store {}".format(
                     sorted_stores[0]))
             engine.runAndWait()
-    elif "stores" in translate.split(" ") or\
-         "food" in translate.split(" ") or\
-         "restaurant" in translate:
+    elif "stores" in translate_split or "food" in translate_split or "restaurant" in translate:
         stores = []
         stores_data = {}
         query = filter_sentence(translate)
