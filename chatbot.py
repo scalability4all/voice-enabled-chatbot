@@ -126,7 +126,7 @@ while True:
     elif translate in cmd5:
         print("here")
         url = "http://api.openweathermap.org/data/2.5/weather?lat={}&lon={}&appid={}&units={}".\
-        format(latitude, longitude, config.weather_api_key,config.weather_temperature_format)
+                format(latitude, longitude, config.weather_api_key,config.weather_temperature_format)
         r = requests.get(url)
         x = r.json()
         city = x['name']
@@ -138,7 +138,6 @@ while True:
         humidity = x['main']['humidity']
         pressure = x['main']['pressure']
         # use the above variables based on user needs
-     
         print("Weather in {} is {} "
               "with temperature {} celsius"
               ", humidity in the air is {} "
@@ -151,7 +150,6 @@ while True:
                    "and wind blowing at a speed of {}".
                    format(city, skyDescription, temp, humidity, windSpeed))
         engine.runAndWait()
-        
     elif translate in var3 or translate in var5:
         current_time = datetime.datetime.now()
         if translate in var3:
@@ -161,7 +159,7 @@ while True:
         elif translate in var5:
             print(current_time.strftime("The date is %B %d, %Y"))
             engine.say(current_time.strftime("The date is %B %d %Y"))
-            engine.runAndWait()   
+            engine.runAndWait()
     elif translate in cmd1:
         webbrowser.open('http://www.google.com')
     elif translate in cmd3:
