@@ -126,7 +126,7 @@ while True:
     elif translate in cmd5:
         print("here")
         url = "http://api.openweathermap.org/data/2.5/weather?lat={}&lon={}&appid={}&units={}".\
-                format(latitude, longitude, config.weather_api_key,config.weather_temperature_format)
+               format(latitude, longitude, config.weather_api_key, config.weather_temperature_format)
         r = requests.get(url)
         x = r.json()
         city = x['name']
