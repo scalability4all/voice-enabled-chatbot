@@ -74,7 +74,7 @@ while True:
             r.adjust_for_ambient_noise(source)
             audio = r.listen(source)
             try:
-                 translate = r.recognize_google(audio, language=language_conf)
+                translate = r.recognize_google(audio, language=language_conf)
                 print("You said:- " + translate)
             except sr.UnknownValueError:
                 print("Could not understand audio")
