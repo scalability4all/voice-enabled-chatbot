@@ -80,6 +80,7 @@ while True:
                 print("Could not understand audio")
                 engine.say('I didnt get that. Rerun the code')
                 engine.runAndWait()
+    translate_split = translate.split(" ")
     if translate in greetings:
         random_greeting = random.choice(greetings)
         print(random_greeting)
@@ -149,7 +150,7 @@ while True:
         print(jokrep)
         engine.say(jokrep)
         engine.runAndWait()
-    elif ("them" in translate.split(" ") or "popular" in translate.split(" ")) and stores:
+    elif ("them" in translate_split or "popular" in translate_split) and stores:
         sorted_stores_data = sorted(
             stores_data,
             key=lambda x: x['rating'],
@@ -172,7 +173,7 @@ while True:
                 "Showing you directions to the store {}".format(
                     sorted_stores[0]))
             engine.runAndWait()
-    elif "stores" in translate.split(" ") or "food" in translate.split(" ") or "restaurant" in translate:
+    elif "stores" in translate_split or "food" in translate_split or "restaurant" in translate:
         stores = []
         stores_data = {}
         query = filter_sentence(translate)
