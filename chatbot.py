@@ -70,7 +70,7 @@ while True:
         translate = input("Type: ").lower()
         translate = translate.translate(table)
         translate = spell.correction(translate)
-        # print(translate)
+        
     else:
         now = datetime.datetime.now()
         r = sr.Recognizer()
