@@ -60,6 +60,8 @@ Inventory Details about Store
 
 ## Usage
 
+To change the language, enter the BCP-47 code from [language support](https://cloud.google.com/speech-to-text/docs/languages). If you want the language to be English (default), press enter.
+
 Arguments:
 ```
          For now, you can use it for following domain:

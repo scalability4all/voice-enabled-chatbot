@@ -9,14 +9,9 @@ import config
 import speech_recognition as sr
 from google_places import *
 import pyjokes
-import string
-from spellchecker import SpellChecker
+from googletrans import Translator
+from voice_conf import *
 # from speech_recognition.__main__ import r, audio
-
-# to remove punctuations from input string
-table = str.maketrans('', '', string.punctuation)
-# to check spelling errors
-spell = SpellChecker()
 
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
@@ -27,9 +22,9 @@ rate = engine.getProperty('rate')
 
 engine.setProperty('rate', rate - 25)
 
-greetings = ['hey there', 'hello', 'hi', 'hai', 'hey', 'hi there']
-question = ['how are you', 'how are you doing', "whats up"]
-responses = ['Okay', "I'm fine", "I am fine."]
+greetings = ['hey there', 'hello', 'hi', 'Hai', 'hey!', 'hey', 'hi there!']
+question = ['How are you?', 'How are you doing?', 'What\'s up?']
+responses = ['Okay', "I'm fine"]
 var1 = ['who made you', 'who created you']
 var2 = ['I_was_created_by_Edward_right_in_his_computer.',
         'Edward', 'Some_guy_whom_i_never_got_to_know.']
@@ -48,7 +43,8 @@ cmd6 = ['exit', 'close', 'goodbye', 'nothing', 'catch you later', 'bye']
 cmd7 = [
     'what is your color',
     'what is your colour',
-    'your color']
+    'your color',
+    'your color?']
 colrep = [
     'Right now its rainbow',
     'Right now its transparent',
@@ -67,10 +63,7 @@ change_location = False
 while True:
     speech_type = input('Speech/Text: ')
     if speech_type.lower() != "speech":
-        translate = input("Type: ").lower()
-        translate = translate.translate(table)
-        translate = spell.correction(translate)
-        
+        translate = input("Type: ")
     else:
         now = datetime.datetime.now()
         r = sr.Recognizer()
@@ -81,10 +74,8 @@ while True:
             r.adjust_for_ambient_noise(source)
             audio = r.listen(source)
             try:
-                translate = r.recognize_google(audio)
-                translate = spell.correction(translate)
+                 translate = r.recognize_google(audio, language=language_conf)
                 print("You said:- " + translate)
-                translate = translate.translate(table)
             except sr.UnknownValueError:
                 print("Could not understand audio")
                 engine.say('I didnt get that. Rerun the code')
