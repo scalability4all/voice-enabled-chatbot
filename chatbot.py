@@ -15,48 +15,34 @@ from google_places import (
     requests,
 )
 import pyjokes
+from googletrans import Translator
+from voice_conf import *
 # from speech_recognition.__main__ import r, audio
 from intentClassification.intent_classification import IntentClassification
 
-engine = pyttsx3.init()
-voices = engine.getProperty("voices")
-engine.setProperty("voice", voices[1].id)
-volume = engine.getProperty("volume")
-engine.setProperty("volume", 10.0)
-rate = engine.getProperty("rate")
-
-engine.setProperty("rate", rate - 25)
-
-intentClassifier = IntentClassification()
-
-greetings = ["hey there", "hello", "hi", "Hai", "hey!", "hey", "hi there!"]
-question = ["How are you?", "How are you doing?", "What's up?"]
-responses = ["Okay", "I'm fine"]
-var1 = ["who made you", "who created you"]
-var2 = [
-    "I_was_created_by_Edward_right_in_his_computer.",
-    "Edward",
-    "Some_guy_whom_i_never_got_to_know.",
-]
-var3 = ["what time is it", "what is the time", "time"]
-var4 = ["who are you", "what is you name"]
-var5 = ["date", "what is the date", "what date is it", "tell me the date"]
-cmd1 = ["open browser", "open google"]
-cmd2 = ["play music", "play songs", "play a song", "open music player"]
+greetings = ['hey there', 'hello', 'hi', 'Hai', 'hey!', 'hey', 'hi there!']
+question = ['How are you?', 'How are you doing?', 'What\'s up?']
+responses = ['Okay', "I'm fine"]
+var1 = ['who made you', 'who created you']
+var2 = ['I_was_created_by_Edward_right_in_his_computer.',
+        'Edward', 'Some_guy_whom_i_never_got_to_know.']
+var3 = ['what time is it', 'what is the time', 'time']
+var4 = ['who are you', 'what is you name']
+var5 = ['date', 'what is the date', 'what date is it', 'tell me the date']
+cmd1 = ['open browser', 'open google']
+cmd2 = ['play music', 'play songs', 'play a song', 'open music player']
 cmd3 = [
-    "tell a joke",
-    "tell me a joke",
-    "say something funny",
-    "tell something funny",
-]
-cmd4 = ["open youtube", "i want to watch a video"]
+    'tell a joke',
+    'tell me a joke',
+    'say something funny',
+    'tell something funny']
+cmd4 = ['open youtube', 'i want to watch a video']
 cmd5 = [
-    "tell me the weather",
-    "weather",
-    "what about the weather",
-    "what's the weather",
-]
-cmd6 = ["exit", "close", "goodbye", "nothing", "catch you later", "bye"]
+    'tell me the weather',
+    'weather',
+    'what about the weather',
+    'what\'s the weather']
+cmd6 = ['exit', 'close', 'goodbye', 'nothing', 'catch you later', 'bye']
 cmd7 = [
     "what is your color",
     "what is your colour",
@@ -73,12 +59,31 @@ cmd9 = ["thank you"]
 
 repfr9 = ["youre welcome", "glad i could help you"]
 
+intentClassifier = IntentClassification()
+
 personalized, longitude, latitude = get_location()
 stores = []
 stores_data = {}
 
 print("hi ", "Setting location through ip bias, Change location?")
 change_location = False
+
+language_conf = input('Language(en-US): ')
+if language_conf == '':
+    language_conf = "en-US"
+voice_language = getVoiceID(language_conf[:2])
+
+engine = pyttsx3.init()
+voices = engine.getProperty('voices')
+engine.setProperty('voice', voice_language)
+volume = engine.getProperty('volume')
+engine.setProperty('volume', 10.0)
+rate = engine.getProperty('rate')
+
+engine.setProperty('rate', rate - 25)
+
+translator = Translator()
+
 while True:
     speech_type = input("Speech/Text: ")
     if speech_type.lower() != "speech":
@@ -86,13 +91,14 @@ while True:
     else:
         r = sr.Recognizer()
         with sr.Microphone() as source:
-            print("Tell me something:")
-            engine.say("Say something")
+            t = translator.translate('Say something', dest=language_conf[:2])
+            print(t.text)
+            engine.say(t.text)
             engine.runAndWait()
             r.adjust_for_ambient_noise(source)
             audio = r.listen(source)
             try:
-                translate = r.recognize_google(audio)
+                translate = r.recognize_google(audio, language=language_conf)
                 print("You said:- " + translate)
             except sr.UnknownValueError:
                 print("Could not understand audio")
@@ -221,9 +227,8 @@ while True:
         print(jokrep)
         engine.say(jokrep)
         engine.runAndWait()
-    elif (
-        "them" in translate.split(" ") or "popular" in translate.split(" ")
-    ) and stores:
+    elif ("them" in translate.split(" ") or
+          "popular" in translate.split(" ")) and stores:
         sorted_stores_data = sorted(
             stores_data, key=lambda x: x["rating"], reverse=True
         )

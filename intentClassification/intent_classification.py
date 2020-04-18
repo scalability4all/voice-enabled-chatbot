@@ -1,4 +1,7 @@
+import json
 import operator
+import os
+import zipfile
 import nltk
 import random
 import collections
@@ -8,6 +11,7 @@ from nltk.corpus import wordnet
 from nltk.stem import WordNetLemmatizer
 from nltk.metrics import precision, recall, f_measure, ConfusionMatrix
 from config import domains
+
 nltk.download()
 
 
@@ -50,10 +54,17 @@ class IntentClassification:
 
     def read_files(self):
         for domain in domains:
-            file_data = pd.read_json(
-                "intentClassification/files/" + domain + ".json"
+            domainpath = os.path.join(
+                os.path.dirname(__file__), "files/" + domain + ".zip"
             )
-            self.data[domain] = file_data["text"].to_numpy()
+            with zipfile.ZipFile(domainpath, "r") as z:
+                for filename in z.namelist():
+                    print(filename)
+                    with z.open(filename) as f:
+                        data = f.read()
+                        d = json.loads(data.decode("utf-8"))
+                        df = pd.DataFrame(d)
+                        self.data[domain] = df["text"].to_numpy()
 
     def get_words(self):
         self.document = [
