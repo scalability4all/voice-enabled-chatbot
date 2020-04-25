@@ -11,8 +11,10 @@ from nltk.corpus import wordnet
 from nltk.stem import WordNetLemmatizer
 from nltk.metrics import precision, recall, f_measure, ConfusionMatrix
 from config import domains
-
-nltk.download()
+nltk.download('averaged_perceptron_tagger')
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('stopwords')
 
 
 class IntentClassification:
@@ -59,7 +61,6 @@ class IntentClassification:
             )
             with zipfile.ZipFile(domainpath, "r") as z:
                 for filename in z.namelist():
-                    print(filename)
                     with z.open(filename) as f:
                         data = f.read()
                         d = json.loads(data.decode("utf-8"))
