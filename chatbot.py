@@ -11,7 +11,18 @@ from google_places import *
 import pyjokes
 from googletrans import Translator
 from voice_conf import *
+from rasa.cli.utils import print_success
+from rasa.nlu.model import Interpreter
+from rasa.nlu.utils import json_to_string
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 # from speech_recognition.__main__ import r, audio
+
+rasa_model_path = "nlu-20200426-024716/nlu"
+interpreter = Interpreter.load(rasa_model_path)
+
+
 
 greetings = ['hey there', 'hello', 'hi', 'Hai', 'hey!', 'hey', 'hi there!']
 question = ['How are you?', 'How are you doing?', 'What\'s up?']
@@ -93,6 +104,8 @@ while True:
                 print("Could not understand audio")
                 engine.say('I didnt get that. Rerun the code')
                 engine.runAndWait()
+    intent = interpreter.parse(translate)
+    print(intent['intent'])
     if translate in greetings:
         random_greeting = random.choice(greetings)
         print(random_greeting)
