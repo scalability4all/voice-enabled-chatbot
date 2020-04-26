@@ -18,6 +18,11 @@ import pyjokes
 from googletrans import Translator
 from voice_conf import *
 # from speech_recognition.__main__ import r, audio
+from rasa.cli.utils import print_success
+from rasa.nlu.model import Interpreter
+from rasa.nlu.utils import json_to_string
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 from intentClassification.intent_classification import IntentClassification
 
 greetings = ['hey there', 'hello', 'hi', 'Hai', 'hey!', 'hey', 'hi there!']
@@ -60,6 +65,9 @@ cmd9 = ["thank you"]
 repfr9 = ["youre welcome", "glad i could help you"]
 
 intentClassifier = IntentClassification()
+
+rasa_model_path = "intentClassification/rasa/models/nlu-20200427-002014/nlu"
+interpreter = Interpreter.load(rasa_model_path)
 
 personalized, longitude, latitude = get_location()
 stores = []
@@ -106,6 +114,8 @@ while True:
                 engine.runAndWait()
     intent = intentClassifier.intent_identifier(translate)
     print("Intent:", intent)
+    intent_rasa = interpreter.parse(translate)
+    print(intent_rasa['intent'])
     # TODO:: entity based weather output
     if intent == "weather":
         print("here")
