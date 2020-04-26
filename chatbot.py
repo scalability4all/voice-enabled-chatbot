@@ -66,7 +66,7 @@ repfr9 = ["youre welcome", "glad i could help you"]
 
 intentClassifier = IntentClassification()
 
-rasa_model_path = "intentClassification/rasa/models/nlu-20200427-002014/nlu"
+rasa_model_path = "intentClassification/rasa/nlu-20200427-002014/nlu"
 interpreter = Interpreter.load(rasa_model_path)
 
 personalized, longitude, latitude = get_location()
