@@ -11,3 +11,4 @@ nltk
 numpy
 pyjokes
 googletrans
+rasa

@@ -1,0 +1,1 @@
+{"0": "affirm", "1": "ask_forecast_weather", "10": "show_credit_cards", "11": "temperature_weather", "12": "transfer_money", "13": "type_weather", "2": "bot_challenge", "3": "deny", "4": "goodbye", "5": "greet", "6": "mood_great", "7": "mood_happy", "8": "mood_unhappy", "9": "show_accounts"}
