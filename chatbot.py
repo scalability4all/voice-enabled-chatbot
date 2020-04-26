@@ -115,7 +115,6 @@ while True:
     intent = intentClassifier.intent_identifier(translate)
     print("Intent:", intent)
     intent_rasa = interpreter.parse(translate)
-    print(intent_rasa['intent'])
     # TODO:: entity based weather output
     if intent == "weather":
         print("here")
