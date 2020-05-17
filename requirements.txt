@@ -11,8 +11,3 @@ nltk
 numpy
 pyjokes
 googletrans
-urllib
-os.path
-zipfile
-pathlib
-json
