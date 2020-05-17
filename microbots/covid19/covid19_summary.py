@@ -6,7 +6,7 @@ import json
 
 print('COVID-19: a summary of new and total cases per country updated daily.')
 
-# Create a directory if it does not exist 
+# Create a directory if it does not exist
 filesDir = 'files'
 if not os.path.exists(filesDir):
     os.makedirs(filesDir)
