@@ -3,7 +3,7 @@
 
 [![Build Status](https://travis-ci.org/scalability4all/voice-enabled-chatbot.svg?branch=master)](https://travis-ci.org/scalability4all/voice-enabled-chatbot) [![codecov](https://codecov.io/gh/scalability4all/voice-enabled-chatbot/branch/master/graph/badge.svg)](https://codecov.io/gh/scalability4all/voice-enabled-chatbot)
 
-Implementing a voice enabled chatbot which converses with a user via their voice in natural language. The user should be able to interact with the application like a voice assistant and appropriate response will be returned by the application (also through voice). The number of topics to converse upon will be fixed however the user should be able to converse through natural language.
+Implementing a voice enabled chatbot which converses with a user via their voice in natural language. The user should be able to interact with the application like a voice assistant and suitable response will be returned by the application (also through voice). The number of topics to converse upon will be fixed however the user should be able to converse through natural language.
 
 If we have topics like the weather, location information, inventory information etc the
 application should be able to converse in that particular topic. Like, if we have questions
@@ -73,7 +73,7 @@ Arguments:
 ```
 You can quit by pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>
 
-## Build the application locally
+## Develop the application locally
 * Clone the repo
     - Clone the ```voice-enabled-chatbot``` repo locally. In the terminal, run : <br>
     ```git clone https://github.com/satyammittal/voice-enabled-chatbot.git```
