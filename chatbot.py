@@ -20,23 +20,23 @@ from voice_conf import *
 # from speech_recognition.__main__ import r, audio
 from intentClassification.intent_classification import IntentClassification
 
-greetings = ['hey there', 'hello', 'hi', 'Hai', 'hey!', 'hey', 'hi there!']
+greetings = ['hey there', 'hello', 'hi', 'Hai', 'hey!', 'hey', 'hi there!','hello dear!']
 question = ['How are you?', 'How are you doing?', 'What\'s up?']
 responses = ['Okay', "I'm fine"]
-var1 = ['who made you', 'who created you']
+var1 = ['who made you?', 'who created you?']
 var2 = ['I_was_created_by_Edward_right_in_his_computer.',
         'Edward', 'Some_guy_whom_i_never_got_to_know.']
 var3 = ['what time is it', 'what is the time', 'time']
 var4 = ['who are you', 'what is you name']
 var5 = ['date', 'what is the date', 'what date is it', 'tell me the date']
 cmd1 = ['open browser', 'open google']
-cmd2 = ['play music', 'play songs', 'play a song', 'open music player']
+cmd2 = ['play music', 'play songs', 'play a song', 'open music player','play an audio']
 cmd3 = [
     'tell a joke',
     'tell me a joke',
     'say something funny',
     'tell something funny']
-cmd4 = ['open youtube', 'i want to watch a video']
+cmd4 = ['open YouTube', 'I want to watch a video']
 cmd5 = [
     'tell me the weather',
     'weather',
