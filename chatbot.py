@@ -20,7 +20,7 @@ from voice_conf import *
 # from speech_recognition.__main__ import r, audio
 from intentClassification.intent_classification import IntentClassification
 
-greetings = ['hey there', 'hello', 'hi', 'Hai', 'hey!', 'hey', 'hi there!','hello dear!']
+greetings = ['hey there', 'hello', 'hi', 'Hai', 'hey!', 'hey', 'hi there!', 'hello dear!']
 question = ['How are you?', 'How are you doing?', 'What\'s up?']
 responses = ['Okay', "I'm fine"]
 var1 = ['who made you?', 'who created you?']
