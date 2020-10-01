@@ -1,4 +1,4 @@
-# Voice Enabled Chatbot
+# Voice Enabled Chat Bot
 
 
 [![Build Status](https://travis-ci.org/scalability4all/voice-enabled-chatbot.svg?branch=master)](https://travis-ci.org/scalability4all/voice-enabled-chatbot) [![codecov](https://codecov.io/gh/scalability4all/voice-enabled-chatbot/branch/master/graph/badge.svg)](https://codecov.io/gh/scalability4all/voice-enabled-chatbot)
@@ -100,12 +100,12 @@ Run the application using command - ```python chatbot.py```
 
 ## Milestones
 
-1. Completing chat bot so that it works on multiple domain specified through config.
+1. Completing chat bot so that it works on multiple domain specified through configuration.
 2. Adding classification techniques for intent seperation.
 3. Automated method for Entity creation from sentences.
 4. Use cache mechanism to give result about recently used query.
 5. At the end, the deliverable will be to implement user interface for a sample chatbot implemented.
-6. We will also extend it to create plugin for companies requiring chatbot. They can put their domain in config file and data separately to give personalized result.
+6. We will also extend it to create plugin for companies requiring chatbot. They can put their domain in configured file and data separately to give personalized result.
 7. Multi Language Support
 
 ## Sample output
