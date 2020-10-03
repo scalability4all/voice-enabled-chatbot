@@ -30,7 +30,7 @@ var3 = ['what time is it', 'what is the time', 'time']
 var4 = ['who are you', 'what is you name']
 var5 = ['date', 'what is the date', 'what date is it', 'tell me the date']
 cmd1 = ['open browser', 'open google']
-cmd2 = ['play music', 'play songs', 'play a song', 'open music player','play an audio']
+cmd2 = ['play music', 'play songs', 'play a song', 'open music player', 'play an audio']
 cmd3 = [
     'tell a joke',
     'tell me a joke',
